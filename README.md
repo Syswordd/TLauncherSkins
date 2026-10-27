@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="TLauncherSkins" width="100%">
+<img src="assets/banner-en.svg" alt="TLauncherSkins" width="100%">
 
 <sub>🌐 <b>English</b> · <a href="README.es.md">Español</a></sub>
 
