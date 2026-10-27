@@ -1,0 +1,19 @@
+name: TLauncherSkins
+version: ${project.version}
+main: es.tlskins.TLauncherSkins
+api-version: '1.21'
+depend: [SkinsRestorer]
+description: Carga automáticamente las skins de TLauncher usando SkinsRestorer.
+
+commands:
+  tlskin:
+    description: Vuelve a cargar la skin de TLauncher de un jugador.
+    usage: /tlskin [jugador]
+
+permissions:
+  tlskin.use:
+    description: Recargar tu propia skin de TLauncher.
+    default: true
+  tlskin.admin:
+    description: Recargar la skin de otros jugadores.
+    default: op

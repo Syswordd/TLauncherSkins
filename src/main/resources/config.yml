@@ -1,0 +1,15 @@
+# Dirección que devuelve los datos de la skin de un nick en TLauncher.
+# {name} se sustituye por el nick del jugador.
+perfil-url: "https://auth.tlauncher.org/skin/profile/texture/login/{name}"
+
+# Si la dirección anterior falla, se intenta descargar la imagen directamente.
+skin-url: "https://auth.tlauncher.org/skin/fileservice/skins/skin_{name}.png"
+
+# Si un jugador se ha puesto una skin a mano con /skin, no se la cambiamos.
+respetar-skin-manual: true
+
+# Nicks a los que nunca se les buscará skin en TLauncher (por ejemplo, jugadores premium).
+ignorar-jugadores: []
+
+# Mostrar en consola lo que hace el plugin con cada jugador.
+debug: false
