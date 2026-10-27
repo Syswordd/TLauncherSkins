@@ -193,7 +193,7 @@ Si alguien en TLauncher tiene registrado **el mismo nick** que un jugador premiu
 
 <br>
 
-Está pensado y probado para **Paper**. En Spigot debería funcionar, porque solo usa la API básica de Bukkit. Para redes con proxy (Velocity/BungeeCord), instálalo en cada servidor Paper donde esté SkinsRestorer.
+Está pensado para **Paper**. En Spigot debería funcionar, porque solo usa la API básica de Bukkit. Para redes con proxy (Velocity/BungeeCord), instálalo en cada servidor Paper donde esté SkinsRestorer.
 
 </details>
 
