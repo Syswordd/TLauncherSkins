@@ -16,7 +16,7 @@
   <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
   <rect width="1200" height="360" rx="24" fill="url(#grid)"/>
 
-  <!-- Cabeza "default" (gris) -->
+  <!-- Default head (grey) -->
   <g transform="translate(110 100)">
     <rect width="160" height="160" rx="10" fill="#475569"/>
     <rect x="30" y="60" width="30" height="20" fill="#e2e8f0"/>
@@ -24,16 +24,16 @@
     <rect x="45" y="60" width="15" height="20" fill="#1e293b"/>
     <rect x="100" y="60" width="15" height="20" fill="#1e293b"/>
     <rect x="55" y="110" width="50" height="14" fill="#334155"/>
-    <text x="80" y="200" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#94a3b8">antes</text>
+    <text x="80" y="200" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#94a3b8">before</text>
   </g>
 
-  <!-- Flecha -->
+  <!-- Arrow -->
   <g transform="translate(300 172)" fill="#5eead4">
     <rect x="0" y="4" width="60" height="12" rx="6"/>
     <path d="M56 -8 L80 10 L56 28 Z"/>
   </g>
 
-  <!-- Cabeza con skin (pixel art) -->
+  <!-- Head with skin (pixel art) -->
   <g transform="translate(410 100)">
     <rect width="160" height="160" rx="10" fill="#7c4a2d"/>
     <rect width="160" height="50" rx="10" fill="#3b2314"/>
@@ -46,10 +46,10 @@
     <rect x="95" y="75" width="15" height="20" fill="#2563eb"/>
     <rect x="70" y="105" width="20" height="12" fill="#c2805a"/>
     <rect x="55" y="130" width="50" height="10" fill="#9a4a3a"/>
-    <text x="80" y="200" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#86efac">después</text>
+    <text x="80" y="200" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#86efac">after</text>
   </g>
 
   <text x="640" y="160" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="url(#title)">TLauncherSkins</text>
-  <text x="642" y="205" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24" fill="#cbd5e1">Las skins de TLauncher, visibles para todos</text>
-  <text x="642" y="240" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" fill="#64748b">Plugin para Paper · funciona con SkinsRestorer</text>
+  <text x="642" y="205" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24" fill="#cbd5e1">TLauncher skins, visible to everyone</text>
+  <text x="642" y="240" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" fill="#64748b">Paper plugin · works with SkinsRestorer</text>
 </svg>

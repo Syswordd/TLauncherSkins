@@ -17,11 +17,11 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
- * Descarga la skin que un nick tiene registrada en TLauncher.
+ * Downloads the skin a nickname has registered on TLauncher.
  */
 public class TLauncherClient {
 
-    /** Skin descargada: la imagen PNG y si el modelo es de brazos finos (slim). */
+    /** Downloaded skin: the PNG image and whether the model has slim arms. */
     public record Skin(byte[] png, SkinVariant variant) {
     }
 
@@ -42,14 +42,14 @@ public class TLauncherClient {
     }
 
     /**
-     * Devuelve la skin del nick, o vacío si no tiene ninguna en TLauncher.
+     * Returns the nickname's skin, or empty if it has none on TLauncher.
      */
     public Optional<Skin> fetch(String name) throws IOException, InterruptedException {
         String encoded = URLEncoder.encode(name, StandardCharsets.UTF_8);
         String pngUrl = skinUrl.replace("{name}", encoded);
         SkinVariant variant = SkinVariant.CLASSIC;
 
-        // Primero el perfil: da la dirección real de la imagen y el modelo (classic/slim)
+        // Profile first: it gives the real image URL and the model (classic/slim)
         try {
             HttpResponse<String> response = http.send(request(profileUrl.replace("{name}", encoded)),
                     HttpResponse.BodyHandlers.ofString());
@@ -69,7 +69,7 @@ public class TLauncherClient {
                 }
             }
         } catch (IOException | RuntimeException e) {
-            logger.fine("No se pudo leer el perfil de TLauncher de " + name + ": " + e.getMessage());
+            logger.fine("Could not read the TLauncher profile of " + name + ": " + e.getMessage());
         }
 
         HttpResponse<byte[]> response = http.send(request(pngUrl), HttpResponse.BodyHandlers.ofByteArray());

@@ -2,93 +2,95 @@
 
 <img src="assets/banner.svg" alt="TLauncherSkins" width="100%">
 
-<br>
+<sub>🌐 <b>English</b> · <a href="README.es.md">Español</a></sub>
 
-[![Descargar](https://img.shields.io/badge/⬇_Descargar-TLauncherSkins.jar-22c55e?style=for-the-badge)](https://github.com/Syswordd/TLauncherSkins/releases/latest)
+<br><br>
+
+[![Download](https://img.shields.io/badge/⬇_Download-TLauncherSkins.jar-22c55e?style=for-the-badge)](https://github.com/Syswordd/TLauncherSkins/releases/latest)
 
 [![Paper](https://img.shields.io/badge/Paper-26.x-3b82f6?style=flat-square)](https://papermc.io)
 [![SkinsRestorer](https://img.shields.io/badge/SkinsRestorer-v15-f97316?style=flat-square)](https://skinsrestorer.net)
 [![Java](https://img.shields.io/badge/Java-25-e11d48?style=flat-square)](https://adoptium.net)
 [![Build](https://img.shields.io/github/actions/workflow/status/Syswordd/TLauncherSkins/build.yml?style=flat-square&label=build)](https://github.com/Syswordd/TLauncherSkins/actions)
-[![Licencia](https://img.shields.io/badge/licencia-MIT-a855f7?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-a855f7?style=flat-square)](LICENSE)
 
-**Haz que todos los jugadores de tu servidor vean las skins de TLauncher,<br>uses el launcher que uses.**
+**Let every player on your server see TLauncher skins,<br>no matter which launcher they use.**
 
 </div>
 
 ---
 
-## 🤔 ¿Qué problema resuelve?
+## 🤔 What problem does it solve?
 
-Tienes un servidor **no premium** (`online-mode=false`) con **SkinsRestorer**. Algunos jugadores usan **TLauncher** y otros el **launcher oficial**. Pasa esto:
+You run a **cracked / offline-mode** server (`online-mode=false`) with **SkinsRestorer**. Some players use **TLauncher** and others use the **official launcher**. This happens:
 
-| | Ve la skin del jugador de TLauncher | Ve la skin del jugador premium |
+| | Sees the TLauncher player's skin | Sees the premium player's skin |
 |---|:---:|:---:|
-| 🟢 Jugador con **TLauncher** | ✅ | ✅ |
-| 🔵 Jugador con **launcher oficial** | ❌ *(sale Steve/Alex)* | ✅ |
+| 🟢 Player on **TLauncher** | ✅ | ✅ |
+| 🔵 Player on the **official launcher** | ❌ *(shows Steve/Alex)* | ✅ |
 
-**Con TLauncherSkins instalado, todos ven todas las skins.** ✅✅
+**With TLauncherSkins installed, everyone sees every skin.** ✅✅
 
 <details>
-<summary><b>¿Por qué pasa esto?</b> (clic para ver la explicación técnica)</summary>
+<summary><b>Why does this happen?</b> (click for the technical explanation)</summary>
 
 <br>
 
-- **TLauncher pone las skins en el cliente.** El launcher descarga las skins de *sus propios servidores* para cada jugador que ves. Por eso, quien usa TLauncher ve todas las skins.
-- **El launcher oficial solo ve lo que le manda el servidor.** Las skins de TLauncher no están en Mojang, así que nadie se las manda.
-- **Minecraft rechaza skins que no estén firmadas por Mojang.** Desde hace varias versiones, el juego ignora las texturas que no estén alojadas en `textures.minecraft.net` con una firma válida. No basta con mandar el enlace de TLauncher.
+- **TLauncher adds skins on the client side.** The launcher downloads skins from *its own servers* for every player you see. That's why TLauncher users see all skins.
+- **The official launcher only sees what the server sends.** TLauncher skins aren't on Mojang's servers, so nobody sends them.
+- **Minecraft rejects skins that aren't signed by Mojang.** For several versions now, the game ignores textures that aren't hosted on `textures.minecraft.net` with a valid signature. Sending the TLauncher link isn't enough.
 
 </details>
 
 ---
 
-## ⚙️ Cómo funciona
+## ⚙️ How it works
 
 ```mermaid
 flowchart LR
-    A["🎮 Jugador entra<br>al servidor"] --> B["🔎 Busca su skin<br>en TLauncher"]
-    B --> C["☁️ La sube a MineSkin<br>(la firma Mojang)"]
-    C --> D["🧩 SkinsRestorer<br>la aplica"]
-    D --> E["👀 ¡Todos la ven!"]
+    A["🎮 Player joins<br>the server"] --> B["🔎 Looks up their<br>skin on TLauncher"]
+    B --> C["☁️ Uploads it to MineSkin<br>(signed by Mojang)"]
+    C --> D["🧩 SkinsRestorer<br>applies it"]
+    D --> E["👀 Everyone sees it!"]
 ```
 
-1. **Un jugador entra** al servidor.
-2. El plugin **descarga su skin de TLauncher** usando su nick (y detecta si es modelo normal o *slim*).
-3. La envía a **[MineSkin](https://mineskin.org)**, un servicio gratuito que la registra en Mojang y devuelve la textura **firmada**.
-4. **SkinsRestorer** se la pone al jugador y la envía a todos los conectados, sin que nadie tenga que reconectarse.
-5. La skin queda **guardada en caché**: solo se vuelve a subir si el jugador la cambia en TLauncher.
+1. **A player joins** the server.
+2. The plugin **downloads their TLauncher skin** using their nickname (and detects whether it's a classic or *slim* model).
+3. It sends it to **[MineSkin](https://mineskin.org)**, a free service that registers it with Mojang and returns a **signed** texture.
+4. **SkinsRestorer** applies it to the player and sends it to everyone online, no reconnecting needed.
+5. The skin is **cached**: it's only uploaded again if the player changes it on TLauncher.
 
 > [!NOTE]
-> El jugador de TLauncher **no necesita cuenta premium**. MineSkin usa sus propias cuentas para firmar la skin.
+> The TLauncher player **doesn't need a premium account**. MineSkin uses its own accounts to sign the skin.
 
 ---
 
-## ✨ Características
+## ✨ Features
 
 <table>
 <tr>
 <td width="50%">
 
-🔄 **Automático**<br>
-Carga la skin al entrar, sin comandos.
+🔄 **Automatic**<br>
+Loads the skin on join, no commands needed.
 
-⚡ **Caché inteligente**<br>
-Solo sube la skin a MineSkin cuando cambia.
+⚡ **Smart cache**<br>
+Only uploads to MineSkin when the skin changes.
 
-🧍 **Classic y Slim**<br>
-Respeta el modelo de brazos de cada skin.
+🧍 **Classic and Slim**<br>
+Keeps each skin's arm model.
 
 </td>
 <td width="50%">
 
-✋ **Respeta `/skin`**<br>
-Si alguien se pone una skin a mano, no se la cambia.
+✋ **Respects `/skin`**<br>
+If someone sets a skin manually, it stays.
 
-🚫 **Lista de ignorados**<br>
-Excluye a jugadores premium u otros nicks.
+🚫 **Ignore list**<br>
+Exclude premium players or any nickname.
 
-🪶 **Ligero**<br>
-Todo se hace en segundo plano, sin lag.
+🪶 **Lightweight**<br>
+Everything runs in the background, no lag.
 
 </td>
 </tr>
@@ -96,121 +98,121 @@ Todo se hace en segundo plano, sin lag.
 
 ---
 
-## 📥 Instalación
+## 📥 Installation
 
-### Requisitos
+### Requirements
 
-| Requisito | Versión |
+| Requirement | Version |
 |---|---|
-| Servidor | **Paper** 26.x (o forks como Purpur) |
-| Java | **25** o superior |
-| Plugin necesario | **[SkinsRestorer](https://modrinth.com/plugin/skinsrestorer)** v15 |
+| Server | **Paper** 26.x (or forks like Purpur) |
+| Java | **25** or newer |
+| Required plugin | **[SkinsRestorer](https://modrinth.com/plugin/skinsrestorer)** v15 |
 
-### Pasos
+### Steps
 
-1. **[Descarga el `.jar`](https://github.com/Syswordd/TLauncherSkins/releases/latest)** desde la última release.
-2. Cópialo en la carpeta **`plugins/`** de tu servidor, junto a SkinsRestorer.
-3. **Reinicia** el servidor.
-4. *(Recomendado)* Abre `plugins/TLauncherSkins/config.yml` y añade a **`ignorar-jugadores`** los nicks de los jugadores **premium**.
+1. **[Download the `.jar`](https://github.com/Syswordd/TLauncherSkins/releases/latest)** from the latest release.
+2. Put it in your server's **`plugins/`** folder, next to SkinsRestorer.
+3. **Restart** the server.
+4. *(Recommended)* Open `plugins/TLauncherSkins/config.yml` and add your **premium** players' nicknames to **`ignored-players`**.
 
-¡Listo! 🎉 La próxima vez que entre un jugador con TLauncher, todos verán su skin.
+Done! 🎉 Next time a TLauncher player joins, everyone will see their skin.
 
 > [!IMPORTANT]
-> El **nick en el servidor** tiene que ser **el mismo** que el de la cuenta de TLauncher. Si no coincide, no se encontrará la skin.
+> The **nickname on the server** must be **the same** as the TLauncher account's nickname. If they don't match, the skin won't be found.
 
 ---
 
-## 💬 Comandos y permisos
+## 💬 Commands and permissions
 
-| Comando | Qué hace | Permiso | Por defecto |
+| Command | What it does | Permission | Default |
 |---|---|---|---|
-| `/tlskin` | Vuelve a cargar **tu** skin de TLauncher | `tlskin.use` | Todos |
-| `/tlskin <jugador>` | Vuelve a cargar la skin de **otro** jugador | `tlskin.admin` | OP |
+| `/tlskin` | Reloads **your** TLauncher skin | `tlskin.use` | Everyone |
+| `/tlskin <player>` | Reloads **another** player's skin | `tlskin.admin` | OP |
 
 > [!TIP]
-> ¿Te has cambiado la skin en TLauncher? Escribe `/tlskin` y se actualiza al momento, sin reconectar.
+> Changed your skin on TLauncher? Type `/tlskin` and it updates instantly, no reconnecting.
 
 ---
 
-## 🛠️ Configuración
+## 🛠️ Configuration
 
-Archivo `plugins/TLauncherSkins/config.yml`:
+File `plugins/TLauncherSkins/config.yml`:
 
 ```yaml
-# Dirección que devuelve los datos de la skin de un nick en TLauncher.
-# {name} se sustituye por el nick del jugador.
-perfil-url: "https://auth.tlauncher.org/skin/profile/texture/login/{name}"
+# URL that returns the skin data of a nickname on TLauncher.
+# {name} is replaced with the player's nickname.
+profile-url: "https://auth.tlauncher.org/skin/profile/texture/login/{name}"
 
-# Si la dirección anterior falla, se intenta descargar la imagen directamente.
+# If the URL above fails, the image is downloaded directly from here.
 skin-url: "https://auth.tlauncher.org/skin/fileservice/skins/skin_{name}.png"
 
-# Si un jugador se ha puesto una skin a mano con /skin, no se la cambiamos.
-respetar-skin-manual: true
+# If a player has set a skin manually with /skin, leave it alone.
+respect-manual-skin: true
 
-# Nicks a los que nunca se les buscará skin en TLauncher (por ejemplo, jugadores premium).
-ignorar-jugadores: []
+# Nicknames that will never be looked up on TLauncher (for example, premium players).
+ignored-players: []
 
-# Mostrar en consola lo que hace el plugin con cada jugador.
+# Log what the plugin does with each player to the console.
 debug: false
 ```
 
-| Opción | Descripción |
+| Option | Description |
 |---|---|
-| `perfil-url` | Dónde consultar la skin de un nick en TLauncher. |
-| `skin-url` | Imagen de la skin, por si la consulta anterior falla. |
-| `respetar-skin-manual` | `true` = no toca a quien se puso skin con `/skin`. |
-| `ignorar-jugadores` | Lista de nicks que el plugin ignora. Ej: `["MiNickPremium", "Otro"]` |
-| `debug` | `true` = muestra en consola qué hace con cada jugador. |
+| `profile-url` | Where to look up a nickname's skin on TLauncher. |
+| `skin-url` | The skin image, used if the lookup above fails. |
+| `respect-manual-skin` | `true` = don't touch players who set a skin with `/skin`. |
+| `ignored-players` | Nicknames the plugin ignores. E.g. `["MyPremiumNick", "Other"]` |
+| `debug` | `true` = log what happens with each player to the console. |
 
 ---
 
-## ❓ Preguntas frecuentes
+## ❓ FAQ
 
 <details>
-<summary><b>Mi amigo sigue saliendo con la skin por defecto</b></summary>
+<summary><b>My friend still shows up with the default skin</b></summary>
 
 <br>
 
-1. Pon `debug: true` en el `config.yml` y reinicia.
-2. Haz que tu amigo entre al servidor y mira la consola:
-   - **"no tiene skin en TLauncher"** → su nick del servidor no coincide con el de TLauncher, o no tiene skin subida.
-   - **"tiene una skin puesta a mano"** → usó `/skin`. Que escriba `/skin clear` o usa `/tlskin <nick>`.
-   - **Error de conexión** → tu servidor no puede conectarse a `auth.tlauncher.org` o a MineSkin (firewall o DNS del hosting).
+1. Set `debug: true` in `config.yml` and restart.
+2. Have your friend join and check the console:
+   - **"has no skin on TLauncher"** → their server nickname doesn't match their TLauncher one, or they have no skin uploaded.
+   - **"has a manually set skin"** → they used `/skin`. Have them run `/skin clear`, or use `/tlskin <nick>`.
+   - **Connection error** → your server can't reach `auth.tlauncher.org` or MineSkin (hosting firewall or DNS).
 
 </details>
 
 <details>
-<summary><b>¿Por qué debería ignorar a los jugadores premium?</b></summary>
+<summary><b>Why should I ignore premium players?</b></summary>
 
 <br>
 
-Si alguien en TLauncher tiene registrado **el mismo nick** que un jugador premium, el plugin le pondría la skin de TLauncher en vez de la de Mojang. Añadiendo los nicks premium a `ignorar-jugadores` lo evitas.
+If someone on TLauncher has registered **the same nickname** as a premium player, the plugin would give that player the TLauncher skin instead of their Mojang one. Adding premium nicknames to `ignored-players` prevents this.
 
 </details>
 
 <details>
-<summary><b>¿Funciona en Spigot, Velocity o BungeeCord?</b></summary>
+<summary><b>Does it work on Spigot, Velocity or BungeeCord?</b></summary>
 
 <br>
 
-Está pensado para **Paper**. En Spigot debería funcionar, porque solo usa la API básica de Bukkit. Para redes con proxy (Velocity/BungeeCord), instálalo en cada servidor Paper donde esté SkinsRestorer.
+It's built for **Paper**. It should work on Spigot, since it only uses the basic Bukkit API. For proxy networks (Velocity/BungeeCord), install it on every Paper server that has SkinsRestorer.
 
 </details>
 
 <details>
-<summary><b>¿Tiene límite de uso MineSkin?</b></summary>
+<summary><b>Does MineSkin have a usage limit?</b></summary>
 
 <br>
 
-MineSkin tiene un límite de peticiones por minuto. El plugin guarda en caché cada skin y solo la vuelve a subir si cambia, así que en servidores normales no es un problema.
+MineSkin has a requests-per-minute limit. The plugin caches every skin and only re-uploads it when it changes, so it's not a problem on normal servers.
 
 </details>
 
 ---
 
-## 🧑‍💻 Compilar desde el código
+## 🧑‍💻 Building from source
 
-Necesitas **JDK 25** y **Maven**:
+You need **JDK 25** and **Maven**:
 
 ```bash
 git clone https://github.com/Syswordd/TLauncherSkins.git
@@ -218,14 +220,14 @@ cd TLauncherSkins
 mvn package
 ```
 
-El plugin aparecerá en `target/TLauncherSkins-<versión>.jar`.
+The plugin will be at `target/TLauncherSkins-<version>.jar`.
 
 ---
 
 <div align="center">
 
-Hecho con ❤️ para servidores con amigos de TLauncher
+Made with ❤️ for servers with TLauncher friends
 
-<sub>Este proyecto no está afiliado con TLauncher, Mojang ni Microsoft.</sub>
+<sub>This project is not affiliated with TLauncher, Mojang or Microsoft.</sub>
 
 </div>

@@ -21,7 +21,7 @@ jobs:
           java-version: '25'
           cache: maven
 
-      - name: Compilar
+      - name: Build plugin
         run: mvn -B package
 
       - uses: actions/upload-artifact@v4
@@ -29,7 +29,7 @@ jobs:
           name: TLauncherSkins
           path: target/TLauncherSkins-*.jar
 
-      - name: Publicar release
+      - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:

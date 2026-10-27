@@ -36,7 +36,7 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
     private boolean respectManualSkin;
     private boolean debug;
 
-    /** Hash de la última skin subida a MineSkin para cada jugador, para no repetir la subida. */
+    /** Hash of the last skin uploaded to MineSkin for each player, so it is not uploaded twice. */
     private final ConcurrentHashMap<String, String> hashes = new ConcurrentHashMap<>();
     private final Set<UUID> inProgress = ConcurrentHashMap.newKeySet();
     private File dataFile;
@@ -45,10 +45,10 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
     public void onEnable() {
         saveDefaultConfig();
         client = new TLauncherClient(getLogger(),
-                getConfig().getString("perfil-url"),
+                getConfig().getString("profile-url"),
                 getConfig().getString("skin-url"));
-        ignored = getConfig().getStringList("ignorar-jugadores");
-        respectManualSkin = getConfig().getBoolean("respetar-skin-manual", true);
+        ignored = getConfig().getStringList("ignored-players");
+        respectManualSkin = getConfig().getBoolean("respect-manual-skin", true);
         debug = getConfig().getBoolean("debug", false);
 
         dataFile = new File(getDataFolder(), "data.yml");
@@ -72,41 +72,41 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
         Player target;
         if (args.length > 0) {
             if (!sender.hasPermission("tlskin.admin")) {
-                sender.sendMessage(ChatColor.RED + "No tienes permiso para cambiar la skin de otros.");
+                sender.sendMessage(ChatColor.RED + "You don't have permission to change other players' skins.");
                 return true;
             }
             target = Bukkit.getPlayerExact(args[0]);
             if (target == null) {
-                sender.sendMessage(ChatColor.RED + "Ese jugador no está conectado.");
+                sender.sendMessage(ChatColor.RED + "That player is not online.");
                 return true;
             }
         } else if (sender instanceof Player player) {
             if (!sender.hasPermission("tlskin.use")) {
-                sender.sendMessage(ChatColor.RED + "No tienes permiso.");
+                sender.sendMessage(ChatColor.RED + "You don't have permission.");
                 return true;
             }
             target = player;
         } else {
-            sender.sendMessage("Uso: /tlskin <jugador>");
+            sender.sendMessage("Usage: /tlskin <player>");
             return true;
         }
 
-        sender.sendMessage(ChatColor.GRAY + "Buscando la skin de TLauncher de " + target.getName() + "...");
+        sender.sendMessage(ChatColor.GRAY + "Looking up the TLauncher skin of " + target.getName() + "...");
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> loadSkin(target, true, sender));
         return true;
     }
 
     /**
-     * Descarga la skin de TLauncher del jugador y se la pone con SkinsRestorer.
+     * Downloads the player's TLauncher skin and applies it with SkinsRestorer.
      *
-     * @param force  ignora la caché y la skin puesta a mano
-     * @param sender a quién avisar del resultado (puede ser null)
+     * @param force  ignore the cache and any manually set skin
+     * @param sender who to notify of the result (may be null)
      */
     private void loadSkin(Player player, boolean force, CommandSender sender) {
         String name = player.getName();
         UUID uuid = player.getUniqueId();
         if (!force && ignored.stream().anyMatch(name::equalsIgnoreCase)) {
-            log(name + " está en la lista de ignorados.");
+            log(name + " is in the ignored list.");
             return;
         }
         if (!inProgress.add(uuid)) {
@@ -121,14 +121,14 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
             Optional<SkinIdentifier> current = playerStorage.getSkinIdOfPlayer(uuid);
             boolean hasOurSkin = current.isPresent() && current.get().equals(ourSkin);
             if (!force && respectManualSkin && current.isPresent() && !hasOurSkin) {
-                log(name + " tiene una skin puesta a mano, no se toca.");
+                log(name + " has a manually set skin, leaving it alone.");
                 return;
             }
 
             Optional<TLauncherClient.Skin> skin = client.fetch(name);
             if (skin.isEmpty()) {
-                log(name + " no tiene skin en TLauncher.");
-                reply(sender, ChatColor.RED + name + " no tiene skin en TLauncher.");
+                log(name + " has no skin on TLauncher.");
+                reply(sender, ChatColor.RED + name + " has no skin on TLauncher.");
                 return;
             }
 
@@ -137,15 +137,15 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
                     && skinsRestorer.getSkinStorage().getSkinDataByIdentifier(ourSkin).isPresent();
 
             if (!unchanged || force) {
-                // MineSkin registra la imagen en Mojang y devuelve la textura firmada
+                // MineSkin registers the image with Mojang and returns the signed texture
                 MineSkinResponse response = skinsRestorer.getMineSkinAPI()
                         .genSkin(skin.get().png(), skin.get().variant());
                 skinsRestorer.getSkinStorage().setCustomSkinData(customName, response.getProperty());
                 hashes.put(uuid.toString(), hash);
                 saveData();
-                log("Skin de " + name + " subida a MineSkin (" + response.getMineSkinId() + ").");
+                log("Uploaded " + name + "'s skin to MineSkin (" + response.getMineSkinId() + ").");
             } else if (hasOurSkin) {
-                log("La skin de " + name + " no ha cambiado.");
+                log(name + "'s skin has not changed.");
                 return;
             }
 
@@ -156,16 +156,16 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
                 }
                 try {
                     skinsRestorer.getSkinApplier(Player.class).applySkin(player);
-                    reply(sender, ChatColor.GREEN + "Skin de TLauncher aplicada a " + name + ".");
+                    reply(sender, ChatColor.GREEN + "TLauncher skin applied to " + name + ".");
                 } catch (Exception e) {
-                    getLogger().log(Level.WARNING, "No se pudo aplicar la skin a " + name, e);
+                    getLogger().log(Level.WARNING, "Could not apply the skin to " + name, e);
                 }
             });
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         } catch (Exception e) {
-            getLogger().warning("Error cargando la skin de TLauncher de " + name + ": " + e);
-            reply(sender, ChatColor.RED + "Error cargando la skin: " + e.getMessage());
+            getLogger().warning("Error loading the TLauncher skin of " + name + ": " + e);
+            reply(sender, ChatColor.RED + "Error loading the skin: " + e.getMessage());
         } finally {
             inProgress.remove(uuid);
         }
@@ -177,7 +177,7 @@ public class TLauncherSkins extends JavaPlugin implements Listener {
         try {
             data.save(dataFile);
         } catch (IOException e) {
-            getLogger().log(Level.WARNING, "No se pudo guardar data.yml", e);
+            getLogger().log(Level.WARNING, "Could not save data.yml", e);
         }
     }
 
